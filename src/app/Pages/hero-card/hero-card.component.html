@@ -1,0 +1,13 @@
+<div class="card fadeIn animated shadow-sm p-3 mb-5 rounded border" [ngClass]="{'border-primary': PadreHero.casa == 'DC', 'border-danger': PadreHero.casa == 'Marvel'}">
+    <img src="{{PadreHero.img}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{PadreHero.nombre}}</h5>
+        <h5 class="card-text">{{PadreHero.casa}}</h5>
+        <p class="card-text">{{PadreHero.bio.substring(0,90)}} ...</p>
+        <small>{{PadreHero.aparicion}}</small>
+    </div>
+    <button (click)="Navegar()" class="btn btn-block" [ngClass]="{' btn-outline-primary': PadreHero.casa == 'DC', ' btn-outline-danger': PadreHero.casa == 'Marvel'}">
+        Ver  más...
+    </button>
+    <!--<button (click)="Navegar(i)" class="btn btn-outline-primary btn-block">Ver más...</button> -->
+</div>
