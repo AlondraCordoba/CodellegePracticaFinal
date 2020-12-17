@@ -10,12 +10,12 @@ import { FormularioHeroesComponent } from './Pages/formulario-heroes/formulario-
 
 
 export const routes: Routes = [
-    {path: " ", component: HomeComponent},
+    {path: "", component: HomeComponent},
     {path: 'home', component: HomeComponent},
-    {path: 'heros', component: HeroesComponent},
+    {path: 'heroes', component: HeroesComponent},
     {path: 'about', component: AboutComponent},
     {path: 'hero/:id', component: HeroComponent},
     {path: 'results/:termino', component: BuscadorComponent},
-    {path: 'formHeroes', component:FormularioHeroesComponent},
-    {path: '**', component: Error404Component}
+    {path: 'formHeroes', component:FormularioHeroesComponent}
+    //{path: '**', component: Error404Component}
 ]

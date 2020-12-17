@@ -1,6 +1,7 @@
 import { importType } from "@angular/compiler/src/output/output_ast";
+import { Injectable } from '@angular/core';
 
-import {Injectable} from '@angular/core';
+
 
 @Injectable({providedIn: 'root'})
 
@@ -71,29 +72,21 @@ public getHero (id){
 }
 
 public searchHeros(termino){
-  // Ver el valor que se esta recibiendo en ese termino.
-  // Componente de la busqueda
   console.log(termino);
-  // Consolear el termino que se esta buscando
 
-  // Declarar un array para almacenar todos los resultados
   let resultados: any = [];
   termino = termino.toLowerCase(); 
 
-  // Tomar el termino que se tiene y lo que se tiene de "DATA"
-  // CICLO para comprar el termino de busqueda contra la propiedad nombre de cada heroe.
-  // hero es un objeto.
-  // Se modificara el for of
   for ( let i = 0; i < this.Heros.length; i++ ){
     let hero = this.Heros[i]
     const nombre = hero.nombre.toLowerCase();
     if (nombre.indexOf(termino) >= 0){
-      // Se agregara una nueva propiedad
+
       hero.index = i;
-    // Regresa la posicion de la cadena chica tiene con la mas grande, del termino que se busco, en caso de que no lo encuentre regresa -1.
-    resultados.push(hero);
+
+      resultados.push(hero);
   }
-}
+    }
  // Al terminar de iterar se va a regresar nuestro arreglo de resultados.
     return resultados;
 }

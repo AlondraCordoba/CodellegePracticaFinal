@@ -1,1 +1,80 @@
-<p>formulario-heroes works!</p>
+<br>
+<h4 class="text-center">Registrar Heroe</h4>
+<!--Para disminuir la carga del html template, utilizaremos este documento-->
+<hr>
+<div class="container-fluid col-8">
+    <form autocomplete="off" (ngSubmit)="registrarHeroe(form)" #form="ngForm" class="col bg-light shadow-sm p-3 mb-5 rounded border">
+        <div>
+            <!------------ ID input ----------
+            <div class="form-group row">
+                <label for="_id" class="col-2 col-form-label">ID:</label>
+                <div class="col-8">
+                    <input type="number" class="form-control" name="_id" placeholder="ID" [(ngModel)]="heroe._id" #_id="ngModel">
+                    <div class="invalid-feedback">
+                        Dato erroneo
+                    </div>
+                </div>
+            </div> -->
+
+            <!------------ Primer input ------------>
+            <div class="form-group row">
+                <label for="nombre" class="col-2 col-form-label">Nombre:</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" [(ngModel)]="heroe.nombre" #nombre="ngModel">
+                    <div class="invalid-feedback">
+                        Dato erroneo
+                    </div>
+                </div>
+            </div>
+            <!------------ Segundo input ------------>
+            <div class="form-group row">
+                <label for="casa" class="col-2 col-form-label">Casa:</label>
+                <div class="col-8">
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="casa" [(ngModel)]="heroe.casa" #casa="ngModel">
+                        <option selected>Selecciona una Casa</option>
+                        <option value="Marvel">Marvel</option>
+                        <option value="DC">DC</option>
+                      </select>
+                    <div class="invalid-feedback">
+                        Selecccione una opcion
+                    </div>
+                </div>
+            </div>
+            <!------------ Tercer input ------------>
+            <div class="form-group row">
+                <label for="aparicion" class="col-2 col-form-label">Fecha de Aparicion:</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" placeholder="Ej: 1974-11-01" name="aparicion" [(ngModel)]="heroe.aparicion" #aparicion="ngModel">
+                    <div class="invalid-feedback">
+                        Escriba una fecha
+                    </div>
+                </div>
+            </div>
+
+            <!-----------------Text Area------------------>
+            <div class="form-group row">
+                <label for="bio" class="col-2 col-form-label">Bio:</label>
+                <div class="col-8">
+                    <textarea class="form-control" placeholder="Bio del Heroe" required placeholder="Bio de Heroe" name="bio" [(ngModel)]="heroe.bio" #bio="ngModel"></textarea>
+                </div>
+            </div>
+
+            <!-----------------------Image------------------------->
+            <div class="form-group row">
+                <label for="img" class="col-2 col-form-label">Imagen:</label>
+                <div class="col-8">
+                    <input class="form-control" type="file" id="img" name="img" [(ngModel)]="heroe.img" #img="ngModel">
+                </div>
+            </div>
+
+
+            <!------------ Boton Enviar ------------>
+            <div class="form-group row">
+                <!-- <label for="nombre" class="col-2 col-form-label">Nombre</label> -->
+                <div class="col-10 mr-4 ml-5 mt-3 input-group">
+                    <button type="submit" class="btn btn-outline-success btn-block">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
