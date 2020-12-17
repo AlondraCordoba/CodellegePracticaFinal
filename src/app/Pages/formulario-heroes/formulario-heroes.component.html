@@ -2,7 +2,7 @@
 <h4 class="text-center">Registrar Heroe</h4>
 <!--Para disminuir la carga del html template, utilizaremos este documento-->
 <hr>
-<div class="container-fluid col-8">
+<div class="container-fluid col-8 fast fadeIn animated ">
     <form autocomplete="off" (ngSubmit)="registrarHeroe(form)" #form="ngForm" class="col bg-light shadow-sm p-3 mb-5 rounded border">
         <div>
             <!------------ ID input ----------
@@ -35,9 +35,6 @@
                         <option value="Marvel">Marvel</option>
                         <option value="DC">DC</option>
                       </select>
-                    <div class="invalid-feedback">
-                        Selecccione una opcion
-                    </div>
                 </div>
             </div>
             <!------------ Tercer input ------------>
@@ -45,9 +42,6 @@
                 <label for="aparicion" class="col-2 col-form-label">Fecha de Aparicion:</label>
                 <div class="col-8">
                     <input type="text" class="form-control" placeholder="Ej: 1974-11-01" name="aparicion" [(ngModel)]="heroe.aparicion" #aparicion="ngModel">
-                    <div class="invalid-feedback">
-                        Escriba una fecha
-                    </div>
                 </div>
             </div>
 
@@ -63,9 +57,11 @@
             <div class="form-group row">
                 <label for="img" class="col-2 col-form-label">Imagen:</label>
                 <div class="col-8">
-                    <input class="form-control" type="file" id="img" name="img" [(ngModel)]="heroe.img" #img="ngModel">
+                    <input type="text" class="form-control" placeholder="assets/img/imagen" id="img" name="img" [(ngModel)]="heroe.img" #img="ngModel">
                 </div>
             </div>
+
+
 
 
             <!------------ Boton Enviar ------------>

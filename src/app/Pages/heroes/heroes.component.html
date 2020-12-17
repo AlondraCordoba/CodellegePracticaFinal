@@ -4,16 +4,40 @@
     <h2 class="display-4 pb-4 text-center mt-1">
         Heroes
     </h2>
-    <div class="card-columns m-1 mr-5 ml-5">
-        <app-hero-card [PadreHero]="Hero" [Index]="i" *ngFor="let Hero of ArrayHeros; let i = index"></app-hero-card>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mr-5 ml-5">
+        <div class="col" *ngFor="let Hero of ArrayHeros; let i = index">
+            <div class="fast fadeIn animated card shadow-sm p-3 mb-5 rounded border " [ngClass]="{'border-primary': Hero.casa == 'DC', 'border-danger': Hero.casa == 'Marvel'}">
+                <h6 class="inline-block">ID: {{Hero._id}} </h6>
+                <div class="hero-grid">
+                    <div class="hero-image">
+                        <img src="{{Hero.img}}" class="card-img-top imgHeroe" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center font-weight-bold">{{Hero.nombre}}</h5>
+                        <p class="card-text font-weight-bold">{{Hero.casa}}</p>
+                        <p class="card-text">{{Hero.bio.substring(0,90)}} ...</p>
+                        <p><small>{{Hero.aparicion}}</small></p>
+                        <p><small>{{Hero.estado}}</small></p>
+                    </div>
+                    <div class="text-center ml-5 mt-1">
+                        <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#btnDanger" type="button" (click)="obtenerId(Hero._id)"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#btnWarning" type="button" (click)="obtenerId(Hero._id)"><i class="fas fa-user-edit"></i></button>
+                    </div>
+
+                    <button data-toggle="modal" data-target="#btnInfo" type="button" class="btn btn-block" [ngClass]="{' btn-outline-primary': Hero.casa == 'DC', ' btn-outline-danger': Hero.casa == 'Marvel'}" (click)="obtenerHero(Hero._id)"> 
+                         Ver  más...
+                        </button>
+                    <br>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <!--------------------------------------MODALES--------------------------------------->
 
 <!--Modal para Eliminar-->
 
-<div class="modal" tabindex="-1" role="dialog" id="btnDanger">
+<div class="modal fade" id="btnDanger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,7 +50,7 @@
                 <p>¿Seguro que quieres eliminar este Heroe?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="eliminarHeroe()">Eliminar</button>
             </div>
         </div>
     </div>
@@ -44,25 +68,25 @@
                   </button>
             </div>
             <div class="modal-body">
-                <form autocomplete="off" class="col bg-light shadow-sm p-3 mb-5 rounded border">
+                <form autocomplete="off" #form="ngForm" class="col bg-light shadow-sm p-3 mb-5 rounded border">
                     <div class="form-group row">
                         <label for="_id" class="col-2 col-form-label">ID:</label>
                         <div class="col-8">
-                            <input type="number" class="form-control" name="_id" disabled>
+                            <input type="number" class="form-control" disabled [(ngModel)]="heroe._id" #_id="ngModel" name="_id">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="nombre" class="col-2 col-form-label">Nombre:</label>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+                            <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="heroe.nombre" #nombre="ngModel" name="nombre">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="apellido" class="col-2 col-form-label">Casa:</label>
                         <div class="col">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="heroe.casa" #casa="ngModel" name="casa">
                                 <option selected>Selecciona una Casa</option>
                                 <option value="Marvel">Marvel</option>
                                 <option value="DC">DC</option>
@@ -73,36 +97,72 @@
                     <div class="form-group row">
                         <label for="fecha" class="col-2 col-form-label">Fecha de Aparicion:</label>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Ej: 1974-11-01">
+                            <input type="text" class="form-control" placeholder="Ej: 1974-11-01" [(ngModel)]="heroe.aparicion" #aparicion="ngModel" name="aparicion">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="validationTextarea" class="col-2 col-form-label">Bio:</label>
                         <div class="col">
-                            <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required placeholder="Bio de Heroe"></textarea>
+                            <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required placeholder="Bio de Heroe" [(ngModel)]="heroe.bio" #bio="ngModel" name="bio"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="img" class="col-2 col-form-label">Imagen:</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="assets/img/imagen" id="img" name="img" [(ngModel)]="heroe.img" #img="ngModel">
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="formFile" class="col-2 col-form-label">Imagen:</label>
-                        <div class="col">
-                            <input class="form-control" type="file" id="formFile" name="img">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="estado" class="col-2 col-form-label">Estado:</label>
-                        <div class="col">
-                            <input type="boolean" class="form-control" placeholder="Estado" name="estado">
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-warning" (click)="actualizarHeroe()">Modificar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <button type="button" class="btn btn-outline-warning">Modificar</button>
+<!-----------------------------Modal Informacion---------------------------------------->
+<div class="modal fade" id="btnInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mr-5">Informacion del Heroe</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                </button>
+                <hr>
+            </div>
+            <div class="modal-body">
+                <div class="containerInfoH m-4">
+                    <div class="row">
+                        <h6 class="inline-block">ID: {{Heros._id}} </h6>
+                        <h4 class="col-10"> {{Heros.nombre}}
+                            <small class="p-8">({{Heros.aparicion}})</small></h4>
+                    </div>
+
+                    <hr>
+
+                    <div class=" row ">
+                        <div class="col-4 ">
+                            <img [src]="Heros.img" class=" img-fluid" alt=" ">
+                        </div>
+
+                        <div class="col-8">
+                            <h5>Casa: <small> {{Heros.casa}} </small> </h5>
+                            <img class="casaL" src="./../../../assets/img/dc.jpeg" *ngIf="Heros.casa == 'DC'">
+                            <img class="casaL" src="./../../../assets/img/marvel.jpeg" *ngIf="Heros.casa == 'Marvel'">
+                            <hr>
+                            <p>
+                                {{Heros.bio}}
+                            </p>
+                        </div>
+                        <div class="modal-footer"></div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

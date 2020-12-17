@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { HeroesSerService } from '../../../Services/heroesSer/heroes-ser.service';
+import Swal from 'sweetalert2';
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-right',
+  showConfirmButton: false,
+  timer: 3000,
+})
 
 @Component({
   selector: 'app-navbar',
@@ -9,16 +17,24 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor( private _Router: Router) { }
+  constructor( private _Router: Router,  private heroSerS: HeroesSerService) { }
+  buscarH: any = [];
+  @Output() salida = new EventEmitter();
+
 
   ngOnInit(): void {
   }
-
-  // Funcion
-  Search( searchValue){
-    console.log(searchValue);
-
-    // Primer termino y el segundo (el que se va a buscar)
-    this._Router.navigate(['/results', searchValue])
+  buscarHeroe(heroe){
+    this.heroSerS.buscarHeroe(heroe).then((data: any) =>{
+      this.buscarH = data;
+      Toast.fire(data.message, '', 'success');
+      this.salida.emit();
+      console.log(this.buscarH)
+    }).catch( (error) => {
+      Toast.fire(error.error.message, '', 'error');
+      console.log(error)
+      this.salida.emit();
+    })
   }
+
 }

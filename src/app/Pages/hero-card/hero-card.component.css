@@ -1,9 +1,0 @@
-	.hero-grid {
-	    font-family: 'Poppins', sans-serif;
-	    border-radius: 15px;
-	    border: 1px solid #e7e7e7;
-	}
-	
-	.hero-grid:hover {
-	    box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.1);
-	}

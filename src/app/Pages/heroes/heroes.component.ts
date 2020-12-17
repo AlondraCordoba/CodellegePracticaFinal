@@ -23,16 +23,18 @@ export class HeroesComponent implements OnInit {
   constructor( private heroService: HeroesService, private _aRouter: Router, private heroSerS: HeroesSerService) {
   }
   heroe: HeroeModel = new HeroeModel();
-  Heros: any[] = [];
+  Heros: any = [];
+  buscarH: any = [];
   ArrayHeros: any = [];
-  @Input() idH: number;
-  @Input() hero: number;
+  idH: any;
   @Output() salida = new EventEmitter();
 
 
   ngOnInit(): void {
   //  this.ArrayHeros = this.heroService.getHeros();
     this.obtenerHeroes();
+    console.log(this.Heros);
+    console.log(this.heroe);
   }
 
   // tslint:disable-next-line: typedef
@@ -43,7 +45,7 @@ export class HeroesComponent implements OnInit {
 
   /////////////////////////////////////SERVIDOR////////////////////////////////////////////////////////
   obtenerHeroes(){
-    this.heroSerS.obtenerHeroes().then((data: any) => {
+    this.heroSerS.obtenerHeroesAct().then((data: any) => {
       this.ArrayHeros = (data);
       console.log(this.ArrayHeros);
     }).catch((error) => {
@@ -51,10 +53,60 @@ export class HeroesComponent implements OnInit {
     });
   }
 
-  obtenerId( idHero: number){
+  obtenerHero(idHero: string){
+    this.idH = idHero;
+    console.log(this.idH)
+    this.heroSerS.obtenerHeroe(this.idH).then((data:any) => {
+      this.Heros = data;
+      console.log(this.Heros)
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  
+  obtenerId( idHero: string){
     this.idH = idHero;
     console.log(this.idH)
   }
 
+  actualizarHeroe(){
+    this.heroSerS.actualizarHeroe(this.heroe, this.idH).then((data: any) => {
+      this.heroe=data;
+      Toast.fire(data.msg, '', 'success')
+      this.salida.emit();
+    }).catch((error: any) => {
+      Toast.fire(error.error.msg, '', 'error');
+      this.salida.emit();
+    })
+      console.log(this.heroe);
+  }
+  
+  
+  eliminarHeroe(){
+    this.heroSerS.eliminarHeroe(this.idH).then((data: any) => {
+      this.heroe = data;
+      Toast.fire(data.message, '', 'success');
+      this.salida.emit();
+      console.log(this.heroe);
+    }).catch( (error) => {
+      Toast.fire(error.error.message, '', 'error');
+      console.log(error)
+      this.salida.emit();
+    })
+  }
+
+buscarHeroe(heroe){
+  this.heroSerS.buscarHeroe(heroe).then((data: any) =>{
+    this.buscarH = data;
+    Toast.fire(data.message, '', 'success');
+    this.salida.emit();
+    console.log(this.buscarH)
+  }).catch( (error) => {
+    Toast.fire(error.error.message, '', 'error');
+    console.log(error)
+    this.salida.emit();
+  })
+}
 
 }

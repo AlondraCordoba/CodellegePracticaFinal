@@ -28,8 +28,7 @@
 
         <form class="form-inline" (submit)="$event.preventDefault()">
             <div class="md-formmy-2 my-lg-0">
-                <input (keyup.enter)="Search(valorBuscar.value)" class="form-control mr-sm-2" #valorBuscar type="search" placeholder="Search ID" aria-label="Search">
-                <button type="button" (click)="Search(valorBuscar.value)" class="btn btn-outline-light border-white mr-2 my-2 my-sm-0">Search</button>
+                <button type="button" (click)="buscarHeroe(heroe.value)" class="btn btn-outline-light border-white mr-2 my-2 my-sm-0" data-toggle="modal" data-target="#btnSearch" type="button">Search</button>
             </div>
         </form>
 
@@ -39,3 +38,39 @@
     </div>
 
 </nav>
+
+
+<!----Modal Buscar-->
+
+<div class="modal fade" id="btnSearch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Buscar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                           </button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search ID" aria-label="Search" min="0" #heroe (keyup)="buscarHeroe(heroe.value)">
+                <hr>
+                <div class="fast fadeIn animated card shadow-sm p-3 mb-5 rounded border col-8" [ngClass]="{'border-primary': buscarH.casa == 'DC', 'border-danger': buscarH.casa == 'Marvel'}">
+                    <h6 class="inline-block">ID: {{buscarH._id}} </h6>
+                    <div class="hero-grid">
+                        <div class="hero-image text-center">
+                            <img src="{{buscarH.img}}" class="card-img-top imgHeroe2" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title text-center font-weight-bold">{{buscarH.nombre}}</p>
+                            <p class="card-text font-weight-bold">{{buscarH.casa}}</p>
+                            <p><small class="card-text">{{buscarH.bio}}</small></p>
+                            <p><small>{{buscarH.aparicion}}</small></p>
+                            <p><small>{{buscarH.estado}}</small></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

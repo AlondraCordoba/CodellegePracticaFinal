@@ -3,10 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './Pages/about/about.component';
-import { BuscadorComponent } from './Pages/buscador/buscador.component';
 import { Error404Component } from './Pages/error404/error404.component';
-import { HeroComponent } from './Pages/hero/hero.component';
-import { HeroCardComponent } from './Pages/hero-card/hero-card.component';
 import { HeroesComponent } from './Pages/heroes/heroes.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { NavbarComponent } from './Pages/shared/navbar/navbar.component';
@@ -29,10 +26,7 @@ import { FormularioHeroesComponent } from './Pages/formulario-heroes/formulario-
   declarations: [
     AppComponent,
     AboutComponent,
-    BuscadorComponent,
     Error404Component,
-    HeroComponent,
-    HeroCardComponent,
     HeroesComponent,
     HomeComponent,
     NavbarComponent,

@@ -17,15 +17,23 @@ export class HeroesSerService {
   obtenerHeroes(){
     return this.http.get(`${this.url}/heroes`).toPromise();
   }
+  // tslint:disable-next-line: typedef
+  obtenerHeroesAct(){
+    return this.http.get(`${this.url}/heroesAct`).toPromise();
+  }
 
   // tslint:disable-next-line: typedef
-  obtenerHeroesActivos(){
-    return this.http.get(`${this.url}/heroesAct`).toPromise();
+  obtenerHeroesTerm(){
+    return this.http.get(`${this.url}/heroesTerm`).toPromise();
   }
 
   // tslint:disable-next-line: typedef
   obtenerHeroe(id: string){
     return this.http.get(`${this.url}/heroe/${id}`).toPromise();
+  }
+
+  buscarHeroe(heroe){
+    return this.http.get(`${this.url}/heroe/${heroe}`).toPromise();
   }
 
   // tslint:disable-next-line: typedef
@@ -40,7 +48,7 @@ export class HeroesSerService {
 
   // tslint:disable-next-line: typedef
   eliminarHeroe(id: number){
-    return this.http.delete(`${this.url}/heroe/${id}`).toPromise();
+    return this.http.delete(`${this.url}/hero/${id}`).toPromise();
   }
 
 }
