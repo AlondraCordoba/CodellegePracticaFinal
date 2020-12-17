@@ -61,8 +61,12 @@
                 </div>
             </div>
 
-
-
+            <div class="form-group row">
+                <label for="estado" class="col-2 col-form-label">Estado:</label>
+                <div class="col-8">
+                    <input type="boolean" class="form-control" placeholder="true" name="estado" [(ngModel)]="heroe.estado" #estado="ngModel">
+                </div>
+            </div>
 
             <!------------ Boton Enviar ------------>
             <div class="form-group row">

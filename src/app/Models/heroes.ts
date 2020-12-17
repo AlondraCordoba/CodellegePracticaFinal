@@ -6,5 +6,5 @@ export class HeroeModel {
     img: string;
     aparicion: string;
     casa: string;
-    activo: boolean;
+    estado: boolean;
 };
