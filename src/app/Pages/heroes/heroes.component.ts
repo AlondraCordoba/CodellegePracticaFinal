@@ -86,11 +86,11 @@ export class HeroesComponent implements OnInit {
   eliminarHeroe(){
     this.heroSerS.eliminarHeroe(this.idH).then((data: any) => {
       this.heroe = data;
-      Toast.fire(data.message, '', 'success');
+      Toast.fire(data.msg, '', 'success');
       this.salida.emit();
       console.log(this.heroe);
     }).catch( (error) => {
-      Toast.fire(error.error.message, '', 'error');
+      Toast.fire(error.error.msg, '', 'error');
       console.log(error)
       this.salida.emit();
     })

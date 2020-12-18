@@ -27,11 +27,11 @@ export class NavbarComponent implements OnInit {
   buscarHeroe(heroe){
     this.heroSerS.buscarHeroe(heroe).then((data: any) =>{
       this.buscarH = data;
-      Toast.fire(data.message, '', 'success');
+      Toast.fire(data.message, 'Dato encontrado', 'success');
       this.salida.emit();
       console.log(this.buscarH)
     }).catch( (error) => {
-      Toast.fire(error.error.message, '', 'error');
+      Toast.fire(error.error.message, 'Dato no encontrado', 'error');
       console.log(error)
       this.salida.emit();
     })

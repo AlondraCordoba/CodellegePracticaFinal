@@ -1,4 +1,4 @@
-<!--HEROS COMPONENT ES PADRE DE HERO-CARD COMPONENT-->
+<!---------------------------------------CARDS-------------------------------------->
 <br>
 <div class="fast fadeIn">
     <h2 class="display-4 pb-4 text-center mt-1">
@@ -17,7 +17,6 @@
                         <p class="card-text font-weight-bold">{{Hero.casa}}</p>
                         <p class="card-text">{{Hero.bio.substring(0,90)}} ...</p>
                         <p><small>{{Hero.aparicion}}</small></p>
-                        <p><small>Estado:{{Hero.estado}}</small></p>
                     </div>
                     <div class="text-center ml-5 mt-1">
                         <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#btnDanger" type="button" (click)="obtenerId(Hero._id)"><i class="fas fa-trash"></i></button>
